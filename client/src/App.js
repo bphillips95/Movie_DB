@@ -9,12 +9,12 @@ function App() {
 
   useEffect(() => {
     fetch(URL, {
-      "access-control-allow-credentials": "true",
-      "access-control-allow-origin": "*",
-      "method": "GET",
+      // "access-control-allow-credentials": "true",
+      // "access-control-allow-origin": "*",
+      // "method": "GET",
       "headers": {
-        "x-rapidapi-key": process.env.REACT_API_KEY,
-        "x-rapidapi-host": process.env.REACT_API_HOST,
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+        "x-rapidapi-host": process.env.REACT_APP_API_HOST,
         "Content-Type": 'application/json'
       }
     })
@@ -22,7 +22,7 @@ function App() {
       setstate(data)
      })
   }, [])
-
+  console.log(state)
   return (
     <div className="App">
       Front-end here
