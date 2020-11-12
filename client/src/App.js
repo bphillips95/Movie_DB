@@ -6,7 +6,7 @@ function App() {
 
   const [state, setstate] = useState([])
 
-  const URL = "https://movie-database-imdb-alternative.p.rapidapi.com/?s=Avengers%20Endgame&page=1&r=json"
+  const URL = "https://movie-database-imdb-alternative.p.rapidapi.com/?s=Avengers%&page=1&r=json"
 
   useEffect(() => {
     fetch(URL, {
@@ -22,6 +22,8 @@ function App() {
   }, [])
   
   const movies = state?.Search?.map(movie => <MovieList movie={movie}/> )
+
+  // Have to hold movie id, if click on movie fetch movie info with movie id. 
 
   return (
     <div className="App">
