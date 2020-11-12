@@ -1,5 +1,6 @@
 import './App.css';
 import React, {useState, useEffect} from 'react'
+import MovieList from './components/MovieList'
 
 function App() {
 
@@ -9,9 +10,6 @@ function App() {
 
   useEffect(() => {
     fetch(URL, {
-      // "access-control-allow-credentials": "true",
-      // "access-control-allow-origin": "*",
-      // "method": "GET",
       "headers": {
         "x-rapidapi-key": process.env.REACT_APP_API_KEY,
         "x-rapidapi-host": process.env.REACT_APP_API_HOST,
@@ -22,10 +20,16 @@ function App() {
       setstate(data)
      })
   }, [])
-  console.log(state)
+  
+  const movies = state?.Search?.map(movie => <MovieList movie={movie}/> )
+
   return (
     <div className="App">
-      Front-end here
+      <h3>Front-end here</h3>
+      <input/> Search Bar
+      <div>
+       {movies}
+      </div>
     </div>
   );
 }
