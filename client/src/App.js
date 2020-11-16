@@ -35,8 +35,6 @@ function App() {
              })
   }
 
-  // Have to hold movie id, if click on movie fetch movie info with movie id. 
-
   return (
     <div className="App">
       <h3>Front-end here</h3>

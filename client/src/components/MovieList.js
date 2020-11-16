@@ -16,12 +16,20 @@ export default function MovieList({movie}) {
                 setstate(data)
                })
     }
-
     return (
         <div>
            <h4>{movie.Title} </h4> 
-            <img src={movie.Poster} alt='' onClick={() => handleClick(movie.imdbID)}/>
-            {/* movie info here on click */}
+            <img src={movie.Poster} alt='' />
+            <br/>
+            <button onClick={() => handleClick(movie.imdbID)}>Click here for more info</button>
+            {state.Plot ? 
+            <div>
+               Director: {state.Director} 
+               <br/>
+               Released: {state.Year}
+                <br/>
+               Plot: {state.Plot}
+            </div> : null}
         </div>
     )
 }
