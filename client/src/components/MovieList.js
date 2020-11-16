@@ -29,6 +29,8 @@ export default function MovieList({movie}) {
                Released: {state.Year}
                 <br/>
                Plot: {state.Plot}
+               <br/>
+               <button>Like</button>    <button>Dislike</button>
             </div> : null}
         </div>
     )
