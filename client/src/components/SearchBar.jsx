@@ -11,7 +11,7 @@ function SearchBar({search}) {
 
     return (
         <div>
-             <form onSubmit={handleSubmit}>
+         <form onSubmit={handleSubmit}>
         <label>
           Name:
           <input type="text" value={state.value} onChange={(e) => setstate(e.target.value)} />

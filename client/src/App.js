@@ -5,9 +5,7 @@ import SearchBar from './components/SearchBar'
 
 function App() {
 
-  const [state, setstate] = useState([])
-
-  const URL = "https://movie-database-imdb-alternative.p.rapidapi.com/?s=Avengers%&page=1&r=json"
+  const [state, setstate] = useState([]) 
 
   // useEffect(() => {
   //   fetch(URL, {
@@ -24,7 +22,18 @@ function App() {
   
   const movies = state?.Search?.map(movie => <MovieList movie={movie}/> )
 
-  const search = info => console.log(info)
+  const search = info => {
+    fetch(`https://movie-database-imdb-alternative.p.rapidapi.com/?s=${info}%&page=1&r=json`, {
+          "headers": {
+            "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+            "x-rapidapi-host": process.env.REACT_APP_API_HOST,
+            "Content-Type": 'application/json'
+          }
+        })
+        .then(r => r.json()).then(data => {
+              setstate(data)
+             })
+  }
 
   // Have to hold movie id, if click on movie fetch movie info with movie id. 
 
@@ -33,7 +42,7 @@ function App() {
       <h3>Front-end here</h3>
       <SearchBar search={search}/>
       <div>
-       {/* {movies} */}
+       {movies}
       </div>
     </div>
   );
