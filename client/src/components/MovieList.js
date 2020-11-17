@@ -2,9 +2,13 @@ import React, {useState} from 'react'
 
 export default function MovieList({movie}) {
 
-    const [state, setstate] = useState([])
+    const [infoState, setinfoState] = useState([])
+    const [likes, setlikes] = useState(false)
+    const [dislikes, setdislikes] = useState(false)
+    const [savedLikes, setsavedLikes] = useState(0)
+    const [savedDislikes, setsavedDislikes] = useState(0)
 
-    const handleClick = (id) => {
+    const handleInfoClick = (id) => {
         fetch(`https://movie-database-imdb-alternative.p.rapidapi.com/?i=${id}&r=json`, {
             "headers": {
               "x-rapidapi-key": process.env.REACT_APP_API_KEY,
@@ -13,24 +17,43 @@ export default function MovieList({movie}) {
             }
           })
           .then(r => r.json()).then(data => {
-                setstate(data)
+                setinfoState(data)
                })
+    }
+    const handleLikes = () => {
+       let newLikes = !likes
+       setlikes(newLikes)
+       if(newLikes === true) {
+           setsavedLikes(savedLikes+1)
+       } else {
+        setsavedLikes(savedLikes-1)
+       }
+    }
+    const handleDislikes = () => {
+        let newDislikes = !dislikes
+        setdislikes(newDislikes)
+        if(newDislikes === true) {
+            setsavedDislikes(savedDislikes+1)
+        } else {
+            setsavedDislikes(savedDislikes-1)
+        }
     }
     return (
         <div>
            <h4>{movie.Title} </h4> 
             <img src={movie.Poster} alt='' />
             <br/>
-            <button onClick={() => handleClick(movie.imdbID)}>Click here for more info</button>
-            {state.Plot ? 
+            <button onClick={() => handleInfoClick(movie.imdbID)}>Click here for more info</button>
+            {infoState.Plot ? 
             <div>
-               Director: {state.Director} 
+               Director: {infoState.Director} 
                <br/>
-               Released: {state.Year}
+               Released: {infoState.Year}
                 <br/>
-               Plot: {state.Plot}
+               Plot: {infoState.Plot}
                <br/>
-               <button>Like</button>    <button>Dislike</button>
+            <button onClick={handleLikes}  >Like: {savedLikes}</button> 
+            <button onClick={handleDislikes} >Dislike: {savedDislikes}</button>
             </div> : null}
         </div>
     )
