@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import MovieList from './components/MovieList'
 import SearchBar from './components/SearchBar'
 
@@ -37,7 +37,6 @@ function App() {
 
   return (
     <div className="App">
-      <h3>Front-end here</h3>
       <SearchBar search={search}/>
       <div>
        {movies}
