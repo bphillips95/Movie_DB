@@ -1,9 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express();
-const port = 8000;
 require('dotenv/config')
-// const MongoClient = require('mongodb').MongoClient;
+
+const movies = require('./routes/movies')
+
+const port = 8000;
+
+app.use(express.json())
+// app.use(cors())
+app.use('/movies', movies)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
